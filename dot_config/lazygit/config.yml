@@ -1,0 +1,7 @@
+services:
+  dev.planfix.com: 'gitlab:dev.planfix.com:83'
+git:
+  commitPrefixes:
+    planfix-frontend:
+      - pattern: '^(\d+)-.*'
+        replace: '(#$1) '
