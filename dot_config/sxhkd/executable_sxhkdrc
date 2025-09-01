@@ -19,7 +19,7 @@ super + alt + Escape
 
 # lock screen
 super + alt + s
-	betterlockscreen -l dim
+	betterlockscreen -l --show-layout dim
 
 Print
 	flameshot gui
