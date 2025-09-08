@@ -5,3 +5,6 @@ git:
     planfix-frontend:
       - pattern: '^(\d+)-.*'
         replace: '(#$1) '
+    planfix-demon:
+      - pattern: '^(\d+)-.*'
+        replace: '(#$1) '
