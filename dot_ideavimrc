@@ -19,6 +19,7 @@ set highlightedyank
 set surround
 set which-key
 set notimeout
+set keep-english-in-normal-and-restore-in-insert
 
 set which-key
 let g:WhichKey_FontSize = 16
@@ -85,6 +86,9 @@ let g:WhichKeyDesc_goto_forward = "<leader>gf Go Forward"
 map <M-h> <Action>(PreviousTab)
 map <M-l> <Action>(NextTab)
 
+" Cancel search highlight
+nnoremap <Esc> :nohlsearch<CR><Esc>
+
 inoremap jk <Esc>
 " Tabs navigations
 nnoremap <A-n> :tabnext<CR>
@@ -95,10 +99,6 @@ nnoremap <A-h> <C-w>h
 nnoremap <A-l> <C-w>l
 nnoremap <A-k> <C-w>k
 nnoremap <A-j> <C-w>j
-
-" Jump between methods
-nnoremap [[ <Action>(MethodUp)
-nnoremap ]] <Action>(MethodDown)
 
 " Easy visual indentation
 vnoremap < <gv
@@ -113,6 +113,7 @@ map <leader>c <action>(CommentByLineComment)
 
 " Open NERDTree (use q to exit)
 map <leader>x :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
 
 " Folding
 map <leader>zc :action CollapseAllRegions<CR>
