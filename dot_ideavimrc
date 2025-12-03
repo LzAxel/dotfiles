@@ -86,6 +86,8 @@ let g:WhichKeyDesc_goto_forward = "<leader>gf Go Forward"
 map <M-h> <Action>(PreviousTab)
 map <M-l> <Action>(NextTab)
 
+vnoremap / "vy/<C-r>v
+
 " Cancel search highlight
 nnoremap <Esc> :nohlsearch<CR><Esc>
 
