@@ -1,0 +1,72 @@
+return {}
+-- return {
+--   {
+--     "neovim/nvim-lspconfig",
+--     dependencies = { "mfussenegger/nvim-jdtls" },
+--     opts = {
+--       setup = {
+--         jdtls = function()
+--           local function start_jdtls()
+--             local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+--             local workspace_dir = vim.fn.expand("~/.workspace/") .. project_name
+-- 
+--             local bundles = {}
+--             -- Если используете java-test и java-debug
+--             local java_test_path = vim.fn.glob(vim.fn.expand("~/.local/share/nvim/mason/packages/java-test/extension/server/*.jar"), true, true)
+--             local java_debug_path = vim.fn.glob(vim.fn.expand("~/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"), true, true)
+--             vim.list_extend(bundles, java_test_path)
+--             vim.list_extend(bundles, java_debug_path)
+-- 
+--             local config = {
+--               cmd = {
+--                 "java",
+--                 "-javaagent:" .. vim.fn.expand("~/.local/share/java/lombok.jar"),
+--                 "-Xms1g",
+--                 "--add-modules=ALL-SYSTEM",
+--                 "--add-opens", "java.base/java.util=ALL-UNNAMED",
+--                 "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+--                 "-jar", vim.fn.glob("/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+--                 "-configuration", "/usr/share/java/jdtls/config_linux",
+--                 "-data", workspace_dir,
+--               },
+--               root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }),
+--               settings = {
+--                 java = {
+--                   format = { settings = { url = vim.fn.expand("~/.config/eclipse-java-google-style.xml") } },
+--                 },
+--               },
+--               init_options = {
+--                 bundles = bundles,
+--               },
+--               -- Вот здесь используем СТАНДАРТНЫЙ on_attach из lspconfig
+--               on_attach = function(client, bufnr)
+--                 -- Ваши кастомные маппинги
+--                 local opts = { buffer = bufnr, noremap = true, silent = true }
+--                 vim.keymap.set("n", "<leader>di", "<cmd>lua require('jdtls').organize_imports()<cr>", opts)
+--                 vim.keymap.set("n", "<leader>dt", "<cmd>lua require('jdtls').test_class()<cr>", opts)
+--                 vim.keymap.set("n", "<leader>dn", "<cmd>lua require('jdtls').test_nearest_method()<cr>", opts)
+--                 vim.keymap.set("v", "<leader>de", "<esc><cmd>lua require('jdtls').extract_variable(true)<cr>", opts)
+--                 vim.keymap.set("n", "<leader>de", "<cmd>lua require('jdtls').extract_variable()<cr>", opts)
+--                 vim.keymap.set("v", "<leader>dm", "<esc><cmd>lua require('jdtls').extract_method(true)<cr>", opts)
+-- 
+--                 -- Обычный общий on_attach от LazyVim (если нужен)
+--                 require("lazyvim.util").lsp.on_attach(function(_, b)
+--                   -- здесь можно добавить общие маппинги, если хочется
+--                 end, bufnr)
+--               end,
+--             }
+-- 
+--             require("jdtls").start_or_attach(config)
+--           end
+-- 
+--           vim.api.nvim_create_autocmd("FileType", {
+--             pattern = "java",
+--             callback = start_jdtls,
+--           })
+-- 
+--           return true -- важно, чтобы lspconfig не пытался сам запускать jdtls
+--         end,
+--       },
+--     },
+--   },
+-- }
